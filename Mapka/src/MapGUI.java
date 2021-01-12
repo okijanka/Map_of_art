@@ -36,7 +36,11 @@ public class MapGUI {
 
     private ArrayList<String[]> wiersze = new ArrayList<String[]>();
 
+
     public MapGUI() {
+
+        wczytywanie();
+
         buttonWczytywanie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,21 +54,20 @@ public class MapGUI {
 //            }
 //        });
 
-        
+
         XVIICenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(XVIICenturyRadioButton.isSelected()){
-                    ArrayList<String> artysciXVIIline = new ArrayList<>();
-                    System.out.println(wiersze.get(1)[1]);
+                    ArrayList<String> movementsXVII = new ArrayList<>();
+ //                   System.out.println(wiersze.get(1)[1]);
+ //                   System.out.println(wiersze.size());
                     for(int i = 0; i < wiersze.size(); i++){
                         if(wiersze.get(i)[1].equals("XVII")){
-
-                            artysciXVIIline.add(wiersze.get(i)[0]);
-
+                                movementsXVII.add(wiersze.get(i)[3]);
                         }
                     }
-                    //System.out.println(artysciXVIIline.get(0));
+//                    System.out.println(movementsXVII);
                 }
             }
         });
@@ -75,18 +78,16 @@ public class MapGUI {
         File plik = new File("malarstwo_11.csv");
         try {
             Scanner input = new Scanner(plik);
-            int i = 1;
             while(input.hasNext()){
                 String wierszString = input.nextLine();
-                //System.out.println(wierszString);
                 String[] wierszStringPodzielony = wierszString.split(";");
-                //System.out.println(wierszStringPodzielony[0]);
                 wiersze.add(wierszStringPodzielony);
-                i++;
-                //System.out.println(input.nextLine());
             }
-//            System.out.println(wiersze.get(0));
-//             System.out.println(wiersze.get(0)[0]);
+//            System.out.println(wiersze);
+//            System.out.println(wiersze.get(1)[4]);
+//            if(wiersze.get(0)[0].equals("Name")){
+//                System.out.println(wiersze.get(0)[0]);
+//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
