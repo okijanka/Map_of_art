@@ -1,21 +1,27 @@
 import java.util.ArrayList;
 
-public class Current {
+public class Movement {
 
     private String name;
-    private ArrayList<Artist> artists;
+    private Artist artist1;
+    private Artist artist2;
 
-    public Current(String name, ArrayList<Artist> artists) {
+    public Movement(String name, Artist artist1, Artist artist2) {
         this.name = name;
-        this.artists = artists;
+        this.artist1 = artist1;
+        this.artist2 = artist2;
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<Artist> getArtists() {
-        return artists;
+    public Artist getArtist1() {
+        return artist1;
+    }
+
+    public Artist getArtist2() {
+        return artist2;
     }
 
     public void searchingCurrent(int time){
