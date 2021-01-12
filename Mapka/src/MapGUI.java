@@ -65,6 +65,7 @@ public class MapGUI {
                     for(int i = 0; i < wiersze.size(); i++){
                         if(wiersze.get(i)[1].equals("XVII")){
                                 movementsXVII.add(wiersze.get(i)[3]);
+                                comboMovement.addItem(wiersze.get(i)[3]);
                         }
                     }
 //                    System.out.println(movementsXVII);
