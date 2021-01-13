@@ -34,58 +34,98 @@ public class MapGUI {
 
     private Movement movement;
 
-    private ArrayList<String[]> wiersze = new ArrayList<String[]>();
-
+    private ArrayList<String[]> linesArt = new ArrayList<String[]>();
+    private ArrayList<String[]> linesMus = new ArrayList<String[]>();
 
     public MapGUI() {
 
-        wczytywanie();
+        insertArtists();
+        insertMuseums();
 
-        buttonWczytywanie.addActionListener(new ActionListener() {
+        XVIIICenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                wczytywanie();
+                comboMovement.removeAllItems();
+                if(XVIIICenturyRadioButton.isSelected()){
+                    ArrayList<String> movementsXVIII = new ArrayList<>();
+                    for(int i = 0; i < linesArt.size(); i+=2){
+                        if(linesArt.get(i)[1].equals("XVIII")){
+                                movementsXVIII.add(linesArt.get(i)[3]);
+                                comboMovement.addItem(linesArt.get(i)[3]);
+                        }
+                    }
+                }
             }
         });
-//        comboBoxCurrent.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //current = (Current) comboBoxCurrent.getSelectedItem();
-//            }
-//        });
-
-
+        XIXCenturyRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comboMovement.removeAllItems();
+                if(XIXCenturyRadioButton.isSelected()){
+                    ArrayList<String> movementsXVII = new ArrayList<>();
+                    for(int i = 0; i < linesArt.size(); i+=2){
+                        if(linesArt.get(i)[1].equals("XIX")){
+                            movementsXVII.add(linesArt.get(i)[3]);
+                            comboMovement.addItem(linesArt.get(i)[3]);
+                        }
+                    }
+                }
+            }
+        });
         XVIICenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                comboMovement.removeAllItems();
                 if(XVIICenturyRadioButton.isSelected()){
                     ArrayList<String> movementsXVII = new ArrayList<>();
- //                   System.out.println(wiersze.get(1)[1]);
- //                   System.out.println(wiersze.size());
-                    for(int i = 0; i < wiersze.size(); i++){
-                        if(wiersze.get(i)[1].equals("XVII")){
-                                movementsXVII.add(wiersze.get(i)[3]);
-                                comboMovement.addItem(wiersze.get(i)[3]);
+                    for(int i = 0; i < linesArt.size(); i+=2){
+                        if(linesArt.get(i)[1].equals("XVII")){
+                            movementsXVII.add(linesArt.get(i)[3]);
+                            comboMovement.addItem(linesArt.get(i)[3]);
                         }
                     }
-//                    System.out.println(movementsXVII);
                 }
+            }
+        });
+        comboMovement.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //movement = (Movement) comboMovement.getSelectedItem();
             }
         });
     }
 
-    public void wczytywanie(){
+    public void insertArtists(){
         //ArrayList<Artist> ;
-        File plik = new File("malarstwo_11.csv");
+        File plik = new File("malarstwo_14_csv.csv");
         try {
             Scanner input = new Scanner(plik);
             while(input.hasNext()){
                 String wierszString = input.nextLine();
                 String[] wierszStringPodzielony = wierszString.split(";");
-                wiersze.add(wierszStringPodzielony);
+                linesArt.add(wierszStringPodzielony);
             }
 //            System.out.println(wiersze);
 //            System.out.println(wiersze.get(1)[4]);
+//            if(wiersze.get(0)[0].equals("Name")){
+//                System.out.println(wiersze.get(0)[0]);
+//            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertMuseums(){
+        File plik = new File("muzea_14_csv.csv");
+        try {
+            Scanner input = new Scanner(plik);
+            while(input.hasNext()){
+                String wierszString = input.nextLine();
+                String[] wierszStringPodzielony = wierszString.split(";");
+                linesMus.add(wierszStringPodzielony);
+            }
+//            System.out.println(linesMus);
+//            System.out.println(linesMus.get(1)[2]);
 //            if(wiersze.get(0)[0].equals("Name")){
 //                System.out.println(wiersze.get(0)[0]);
 //            }
