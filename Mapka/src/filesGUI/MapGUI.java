@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
@@ -18,8 +20,6 @@ public class MapGUI extends JFrame{
     private JLabel map;
     private JPanel panel;
     private JPanel left;
-   // private JComboBox comboBoxCurrent;
-    private JButton buttonWczytywanie;
     private JRadioButton XVIICenturyRadioButton;
     private JRadioButton XVIIICenturyRadioButton;
     private JRadioButton XIXCenturyRadioButton;
@@ -161,12 +161,6 @@ public class MapGUI extends JFrame{
                 }
             }
         });
-//        map.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                super.mouseClicked(e);
-//            }
-//        });
         showPaintingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,6 +171,15 @@ public class MapGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 watchingPictures(artist2);
+            }
+        });
+        map.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                pin1.setLocation(100,100);
+                map.setLayout(null);
+                map.add(pin1);
             }
         });
     }
@@ -191,11 +194,6 @@ public class MapGUI extends JFrame{
                 String[] wierszStringPodzielony = wierszString.split(";");
                 linesArt.add(wierszStringPodzielony);
             }
-//            System.out.println(wiersze);
-//            System.out.println(wiersze.get(1)[4]);
-//            if(wiersze.get(0)[0].equals("Name")){
-//                System.out.println(wiersze.get(0)[0]);
-//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -210,11 +208,6 @@ public class MapGUI extends JFrame{
                 String[] wierszStringPodzielony = wierszString.split(";");
                 linesMus.add(wierszStringPodzielony);
             }
-//            System.out.println(linesMus);
-//            System.out.println(linesMus.get(1)[2]);
-//            if(wiersze.get(0)[0].equals("Name")){
-//                System.out.println(wiersze.get(0)[0]);
-//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

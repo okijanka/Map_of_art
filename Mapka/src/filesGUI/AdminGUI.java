@@ -14,6 +14,7 @@ public class AdminGUI extends JFrame{
     private JButton showDatabaseOfMuseumsButton;
     private JButton addAMovementButton;
     private JButton deleteTransactionButton;
+    private JButton deleteMovementButton;
 
     public AdminGUI(){
         setContentPane(adminWindow);
