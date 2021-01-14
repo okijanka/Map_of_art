@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,9 +35,12 @@ public class MapGUI {
     private JButton searchCurrentButton;
 
     private Movement movement;
+    private Museum museum1;
+    private Museum museum2;
 
     private ArrayList<String[]> linesArt = new ArrayList<String[]>();
     private ArrayList<String[]> linesMus = new ArrayList<String[]>();
+
 
     public MapGUI() {
 
@@ -90,9 +95,34 @@ public class MapGUI {
         comboMovement.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //movement = (Movement) comboMovement.getSelectedItem();
+                String nameOfMovement;
+                nameOfMovement = (String) comboMovement.getSelectedItem();
+                for(int i = 0; i < linesArt.size(); i++){
+                    if(linesArt.get(i)[3].equals(nameOfMovement)){
+                        System.out.println(linesArt.get(i)[0]);
+                        for(int j = 0; j < linesMus.size(); j++){
+                            String lineOfPaintings = linesArt.get(i)[4];
+                            String[] paintings = lineOfPaintings.split(",");
+                            System.out.println(paintings[1]);
+                            if(linesMus.get(j)[0].equals(paintings[0])){
+                                System.out.println(linesMus.get(j)[1]);
+                                museum1 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                            }
+                            if(linesMus.get(j)[0].equals(paintings[1])){
+                                museum2 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                            }
+                            Artist artist1 = new Artist(linesArt.get(i)[0], linesArt.get(i)[2], linesArt.get(i)[4], museum1, museum2);
+                        }
+                    }
+                }
             }
         });
+//        map.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                super.mouseClicked(e);
+//            }
+//        });
     }
 
     public void insertArtists(){
