@@ -54,57 +54,29 @@ public class MapGUI extends JFrame{
     public MapGUI() {
 
         setContentPane(panel);
+        //left.setSize(50, 200);
+        refresh();
         insertArtists();
         insertMuseums();
 
         XVIICenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comboMovement.removeAllItems();
-                MovementCentury.clear();
-                makingNull();
-                if(XVIICenturyRadioButton.isSelected()){
-                    for(int i = 0; i < linesArt.size(); i+=2){
-                        if(linesArt.get(i)[1].equals("XVII")){
-                            comboMovement.addItem(linesArt.get(i)[3]);
-                            MovementCentury.put(linesArt.get(i)[3], "XVII");
-                        }
-                    }
-                }
+                pickingCentury(XVIICenturyRadioButton, "XVII");
                 refresh();
             }
         });
         XVIIICenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comboMovement.removeAllItems();
-                MovementCentury.clear();
-                makingNull();
-                if(XVIIICenturyRadioButton.isSelected()){
-                    for(int i = 0; i < linesArt.size(); i+=2){
-                        if(linesArt.get(i)[1].equals("XVIII")){
-                            comboMovement.addItem(linesArt.get(i)[3]);
-                            MovementCentury.put(linesArt.get(i)[3], "XVIII");
-                        }
-                    }
-                }
+                pickingCentury(XVIIICenturyRadioButton, "XVIII");
                 refresh();
             }
         });
         XIXCenturyRadioButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comboMovement.removeAllItems();
-                MovementCentury.clear();
-                makingNull();
-                if(XIXCenturyRadioButton.isSelected()){
-                    for(int i = 0; i < linesArt.size(); i+=2){
-                        if(linesArt.get(i)[1].equals("XIX")){
-                            comboMovement.addItem(linesArt.get(i)[3]);
-                            MovementCentury.put(linesArt.get(i)[3], "XIX");
-                        }
-                    }
-                }
+                pickingCentury(XIXCenturyRadioButton, "XIX");
                 refresh();
             }
         });
@@ -124,13 +96,17 @@ public class MapGUI extends JFrame{
                                 String lineOfPaintings = linesArt.get(i)[4];
                                 String[] paintings = lineOfPaintings.split(",");
                                 if (linesMus.get(j)[0].equals(paintings[0])) {
-                                    museum1 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                                    String [] position = linesMus.get(j)[4].split(",");
+                                    museum1 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3], linesMus.get(j)[0], Integer.parseInt(position[0]), Integer.parseInt(position[1]));
                                 }
                                 if (linesMus.get(j)[0].equals(paintings[1])) {
-                                    museum2 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                                    String [] position = linesMus.get(j)[4].split(",");
+                                    museum2 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3], linesMus.get(j)[0], Integer.parseInt(position[0]), Integer.parseInt(position[1]));
                                 }
                                 if (museum1 != null && museum2 != null) {
-                                    artist1 = new Artist(linesArt.get(i)[0], linesArt.get(i)[2], linesArt.get(i)[4], museum1, museum2);
+                                    artist1 = new Artist(linesArt.get(i)[0], linesArt.get(i)[2], linesArt.get(i)[4]/*, museum1, museum2*/);
+                                    artist1.setMuseum1(museum1);
+                                    artist1.setMuseum2(museum2);
                                 }
                                 j++;
                             }
@@ -144,13 +120,17 @@ public class MapGUI extends JFrame{
                                 String lineOfPaintings = linesArt.get(i)[4];
                                 String[] paintings = lineOfPaintings.split(",");
                                 if (linesMus.get(j)[0].equals(paintings[0])) {
-                                    museum3 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                                    String [] position = linesMus.get(j)[4].split(",");
+                                    museum3 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3], linesMus.get(j)[0], Integer.parseInt(position[0]), Integer.parseInt(position[1]));
                                 }
                                 if (linesMus.get(j)[0].equals(paintings[1])) {
-                                    museum4 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3]);
+                                    String [] position = linesMus.get(j)[4].split(",");
+                                    museum4 = new Museum(linesMus.get(j)[1], linesMus.get(j)[2], linesMus.get(j)[3], linesMus.get(j)[0], Integer.parseInt(position[0]), Integer.parseInt(position[1]));
                                 }
                                 if (museum3 != null && museum4 != null) {
-                                    artist2 = new Artist(linesArt.get(i)[0], linesArt.get(i)[2], linesArt.get(i)[4], museum3, museum4);
+                                    artist2 = new Artist(linesArt.get(i)[0], linesArt.get(i)[2], linesArt.get(i)[4]);
+                                    artist2.setMuseum1(museum3);
+                                    artist2.setMuseum2(museum4);
                                 }
                                 j++;
                             }
@@ -166,14 +146,24 @@ public class MapGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 pin1.setVisible(true);
-                watchingPictures(artist1);
+                String nameFile = artist1.getPaintings();
+                String[] paintings = nameFile.split(",");
+                String obraz1 = paintings[0] + ".png";
+                String obraz2 = paintings[1] + ".png";
+                watchingPictures(obraz1, paintings[0]);
+                watchingPictures(obraz2, paintings[1]);
             }
         });
         showPaintingsButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pin2.setVisible(true);
-                watchingPictures(artist2);
+                String nameFile = artist2.getPaintings();
+                String[] paintings = nameFile.split(",");
+                String obraz1 = paintings[0] + ".png";
+                String obraz2 = paintings[1] + ".png";
+                watchingPictures(obraz1, paintings[0]);
+                watchingPictures(obraz2, paintings[1]);
             }
         });
 
@@ -240,6 +230,20 @@ public class MapGUI extends JFrame{
         }
     }
 
+    private void pickingCentury(JRadioButton button, String century){
+        comboMovement.removeAllItems();
+        MovementCentury.clear();
+        makingNull();
+        if(button.isSelected()){
+            for(int i = 0; i < linesArt.size(); i+=2){
+                if(linesArt.get(i)[1].equals(century)){
+                    comboMovement.addItem(linesArt.get(i)[3]);
+                    MovementCentury.put(linesArt.get(i)[3], century);
+                }
+            }
+        }
+    }
+
     private void whereOnMap(Artist artist){
 
         pin2.setVisible(true);
@@ -276,22 +280,17 @@ public class MapGUI extends JFrame{
     }
 
     private void museumInfo(Artist artist){
-        JFrame f = new MuseumInfoGUI();
+        JFrame f = new MuseumInfoGUI(artist);
         f.pack();
         f.setVisible(true);
     }
 
-    private void watchingPictures(Artist artist){
+    private void watchingPictures(String obraz1, String name){
         SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
             {
-                String nameFile = artist.getPaintings();
-                String[] paintings = nameFile.split(",");
-                String obraz1 = paintings[0] + ".png";
-                String obraz2 = paintings[1] + ".png";
-
-                JFrame editorFrame1 = new JFrame(paintings[0]);
+                JFrame editorFrame1 = new JFrame(name);
                 //editorFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 BufferedImage image1 = null;
                 try
@@ -310,26 +309,6 @@ public class MapGUI extends JFrame{
                 editorFrame1.pack();
                 editorFrame1.setLocationRelativeTo(null);
                 editorFrame1.setVisible(true);
-
-                JFrame editorFrame2 = new JFrame(paintings[1]);
-                //editorFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                BufferedImage image2 = null;
-                try
-                {
-                    image2 = ImageIO.read(new File(obraz2));
-                }
-                catch (Exception es)
-                {
-                    es.printStackTrace();
-                    System.exit(1);
-                }
-                ImageIcon imageIcon2 = new ImageIcon(image2);
-                JLabel jLabel2 = new JLabel();
-                jLabel2.setIcon(imageIcon2);
-                editorFrame2.getContentPane().add(jLabel2, BorderLayout.CENTER);
-                editorFrame2.pack();
-                editorFrame2.setLocationRelativeTo(null);
-                editorFrame2.setVisible(true);
             }
         });
     }
@@ -342,6 +321,13 @@ public class MapGUI extends JFrame{
             art1Text.setText(" ");
             art2Text.setText(" ");
         }
+//        pin1.setLocation(100,144);
+//        map.setLayout(null);
+//        map.add(pin1);
+//        pin2.setVisible(true);
+//        pin2.setLocation(400,473);
+//        map.setLayout(null);
+//        map.add(pin2);
     }
 
     private void makingNull(){

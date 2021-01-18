@@ -6,15 +6,33 @@ public class Artist{
 
     private String name;
     private String nationality;
+    private String century;
+    private String movement;
     private String paintings;
     private Museum museum1;
     private Museum museum2;
 
-    public Artist(String name, String nationality, String paintings, Museum museum1, Museum museum2) {
+    public Artist(String name, String nationality, String paintings/*, Museum museum1, Museum museum2*/) {
         this.name = name;
         this.nationality = nationality;
         this.paintings = paintings;
+        //this.museum1 = museum1;
+        //this.museum2 = museum2;
+    }
+
+    public void setMovement(String movement) {
+        this.movement = movement;
+    }
+
+    public void setCentury(String century) {
+        this.century = century;
+    }
+
+    public void setMuseum1(Museum museum1) {
         this.museum1 = museum1;
+    }
+
+    public void setMuseum2(Museum museum2) {
         this.museum2 = museum2;
     }
 
@@ -28,6 +46,14 @@ public class Artist{
 
     public String getPaintings() {
         return paintings;
+    }
+
+    public String getMovement() {
+        return movement;
+    }
+
+    public String getCentury() {
+        return century;
     }
 
     public Museum getMuseum2() {
