@@ -213,7 +213,7 @@ public class MapGUI extends JFrame{
 
     public void insertArtists(){
         //ArrayList<classesMap.Artist> ;
-        File plik = new File("malarstwo_15_csv.csv");
+        File plik = new File("malarstwo.csv");
         try {
             Scanner input = new Scanner(plik);
             while(input.hasNext()){
@@ -227,7 +227,7 @@ public class MapGUI extends JFrame{
     }
 
     public void insertMuseums(){
-        File plik = new File("muzea_15_csv.csv");
+        File plik = new File("muzea.csv");
         try {
             Scanner input = new Scanner(plik);
             while(input.hasNext()){
