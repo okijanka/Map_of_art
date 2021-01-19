@@ -1,6 +1,7 @@
 package filesGUI;
 
 import classesMap.Artist;
+import classesMap.Ticket;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,12 +17,17 @@ public class MuseumInfoGUI extends JFrame {
     private JTextField email1;
     private JComboBox combo1;
     private JComboBox combo2;
-    private JTextField email2;
     private JLabel info1;
     private JLabel info2;
     private JPanel first;
     private JLabel artname;
     private JLabel doggo;
+    private JButton cancelButton;
+    private JButton confirm1;
+    private JPanel buy1;
+    private JPanel buy2;
+    private JTextField email2;
+    private JButton confirm2;
 
     public MuseumInfoGUI(Artist artist) {
 
@@ -38,6 +44,29 @@ public class MuseumInfoGUI extends JFrame {
         combo2.addItem("Normal ticket");
         combo2.addItem("Student ticket");
 
+
+        confirm1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(combo1.getSelectedItem() != null && email1.getText() != null) {
+                    Ticket ticket = new Ticket((String) combo1.getSelectedItem(), email1.getText(), artist.getMuseum1());
+                }
+            }
+        });
+        confirm2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(combo2.getSelectedItem() != null && email2.getText() != null) {
+                    Ticket ticket = new Ticket((String) combo2.getSelectedItem(), email2.getText(), artist.getMuseum2());
+                }
+            }
+        });
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }
 

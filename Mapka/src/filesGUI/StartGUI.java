@@ -26,11 +26,11 @@ public class StartGUI {
         userButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                userButton.setEnabled(true);
                 if(userSecure){
-                    JFrame f = new MapGUI();
+                    JFrame f = new MapGUI(userButton);
                     f.pack();
                     f.setVisible(true);
-                    userSecure = false;
                 }
             }
         });
