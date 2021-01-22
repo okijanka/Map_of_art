@@ -1,0 +1,5 @@
+E-mail,Museum,Ticket Type
+test,Kunsthalle Bremen,Student ticket
+test,Museo Lazaro Galdiano,Normal ticket
+test1,Real Academia de Bellas Artes de San Fernando,Student ticket
+test2,Museo Lazaro Galdiano,Student ticket
