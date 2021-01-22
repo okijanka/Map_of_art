@@ -1,0 +1,11 @@
+E-mail,Museum,Ticket Type
+test,Kunsthalle Bremen,Student ticket
+test,Museo Lazaro Galdiano,Normal ticket
+test1,Real Academia de Bellas Artes de San Fernando,Student ticket
+test2,Museo Lazaro Galdiano,Student ticket
+maka@gmail.com,Museum of Fine Arts,Student ticket
+ola,Dulwich Picture Gallery,Normal ticket
+bartek,Stadel Museum,Student ticket
+bartek,Stadel Museum,Student ticket
+ola,The Kremer Collection,Normal ticket
+bartek,Muzeul National Brukenthal,Student ticket

@@ -12,7 +12,7 @@ public class TableDataMus extends AbstractTableModel {
     private final String[] columnNames = {"Painting", "Museum", "City", "Country"};
 
     public TableDataMus(){
-        File plik = new File("muzea.csv");
+        File plik = new File("/Volumes/Mariusz/PO/GIT PO/Map_of_art/Mapka/src/databases/muzea.csv");
         try {
             Scanner input = new Scanner(plik);
             while(input.hasNext()){

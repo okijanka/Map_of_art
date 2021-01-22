@@ -1,18 +1,19 @@
 package filesGUI;
 
-import classesMap.TableDataArt;
+import classesMap.TableDataTickets;
+
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class DatabaseOfArt extends JFrame {
-    private JTable table;
+public class DatabaseOfTickets extends JFrame {
+    private JTable table1;
     private JPanel panel1;
 
-    public DatabaseOfArt(JButton button) {
+    public DatabaseOfTickets(JButton button) {
         button.setEnabled(false);
-        TableDataArt model = new TableDataArt();
-        table.setModel(model);
+        TableDataTickets model = new TableDataTickets();
+        table1.setModel(model);
         setContentPane(panel1);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -20,6 +21,4 @@ public class DatabaseOfArt extends JFrame {
             }
         });
     }
-
 }
-

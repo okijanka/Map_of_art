@@ -2,10 +2,12 @@ package filesGUI;
 
 import classesMap.Artist;
 import classesMap.Ticket;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 
 public class MuseumInfoGUI extends JFrame {
     private JPanel main;
@@ -28,9 +30,13 @@ public class MuseumInfoGUI extends JFrame {
     private JPanel buy2;
     private JTextField email2;
     private JButton confirm2;
+    private String newData;
+    private FileWriter fileWriter;
+    private BufferedReader fileReader;
 
-    public MuseumInfoGUI(Artist artist) {
+    public MuseumInfoGUI(Artist artist, JButton button) {
 
+        button.setEnabled(false);
         setContentPane(main);
 
         artname.setText("<html>" + "<B>" + artist.getName() + "</B>" + " was born in " + artist.getNationality() + "." + "</html>");
@@ -48,25 +54,49 @@ public class MuseumInfoGUI extends JFrame {
         confirm1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(combo1.getSelectedItem() != null && email1.getText() != null) {
-                    Ticket ticket = new Ticket((String) combo1.getSelectedItem(), email1.getText(), artist.getMuseum1());
+                if (combo1.getSelectedItem() != null && email1.getText() != null) {
+                    Ticket ticket = new Ticket((String) combo1.getSelectedItem(), email1.getText(), artist.getMuseum1().getName());
+                    newData = "\n" + ticket.getEmail() + "," + ticket.getMuseum() + "," + ticket.getTicketType();
+                    writingTickets(newData);
+                    newData = null;
                 }
             }
         });
         confirm2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(combo2.getSelectedItem() != null && email2.getText() != null) {
-                    Ticket ticket = new Ticket((String) combo2.getSelectedItem(), email2.getText(), artist.getMuseum2());
+                if (combo2.getSelectedItem() != null && email2.getText() != null) {
+                    Ticket ticket = new Ticket((String) combo2.getSelectedItem(), email2.getText(), artist.getMuseum2().getName());
+                    newData = "\n" + ticket.getEmail() + "," + ticket.getMuseum() + "," + ticket.getTicketType();
+                    writingTickets(newData);
+                    newData = null;
                 }
             }
         });
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                button.setEnabled(true);
             }
         });
     }
+
+    private void writingTickets(String newData) {
+        try {
+            fileWriter = new FileWriter("databases/tickets.txt", true);
+            fileWriter.write(newData);
+            fileWriter.flush();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    fileWriter.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
 

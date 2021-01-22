@@ -12,7 +12,7 @@ public class TableDataArt extends AbstractTableModel {
     private String[] columnNames = {"Name", "Century", "Nationality", "Movement", "Paintings"};
 
     public TableDataArt(){
-        File plik = new File("malarstwo.csv");
+        File plik = new File("/Volumes/Mariusz/PO/GIT PO/Map_of_art/Mapka/src/databases/malarstwo.csv");
         try {
             Scanner input = new Scanner(plik);
             while(input.hasNext()){

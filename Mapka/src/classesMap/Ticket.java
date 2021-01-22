@@ -3,15 +3,15 @@ package classesMap;
 public class Ticket {
     private String ticketType;
     private String email;
-    private Museum museum;
+    private String museum;
 
-    public Ticket(String ticketType, String email, Museum museum) {
+    public Ticket(String ticketType, String email, String museum) {
         this.ticketType = ticketType;
         this.email = email;
-        this.museum = museum;
+        this.museum =museum;
     }
 
-    public String isTicketType() {
+    public String getTicketType() {
         return ticketType;
     }
 
@@ -19,7 +19,7 @@ public class Ticket {
         return email;
     }
 
-    public Museum getMuseum() {
+    public String getMuseum() {
         return museum;
     }
 }

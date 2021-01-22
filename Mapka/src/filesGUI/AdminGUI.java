@@ -3,18 +3,19 @@ package filesGUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
-public class AdminGUI extends JFrame{
+public class AdminGUI extends JFrame {
     private JPanel adminWindow;
     private JButton showDatabaseOfArtistsButton;
     private JButton showSoldTicketsButton;
-    private JButton deleteTransactionButton;
     private JButton showDatabaseOfMuseumButton;
-    private JTable j;
     private ArrayList<String[]> linesArt = new ArrayList<String[]>();
 
-    public AdminGUI(){
+    public AdminGUI(JButton adminButton) {
+        adminButton.setEnabled(false);
         setContentPane(adminWindow);
         showDatabaseOfArtistsButton.addActionListener(new ActionListener() {
             @Override
@@ -25,7 +26,7 @@ public class AdminGUI extends JFrame{
 //                } catch (IOException ioException) {
 //                    ioException.printStackTrace();
 //                }
-                JFrame f = new DatabaseOfArt();
+                JFrame f = new DatabaseOfArt(showDatabaseOfArtistsButton);
                 f.pack();
                 f.setVisible(true);
             }
@@ -33,10 +34,24 @@ public class AdminGUI extends JFrame{
         showDatabaseOfMuseumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame f = new DatabaseOfMus();
+                JFrame f = new DatabaseOfMus(showDatabaseOfMuseumButton);
+                f.pack();
+                f.setVisible(true);
+            }
+        });
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                adminButton.setEnabled(true);
+            }
+        });
+        showSoldTicketsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame f = new DatabaseOfTickets(showSoldTicketsButton);
                 f.pack();
                 f.setVisible(true);
             }
         });
     }
+
 }
