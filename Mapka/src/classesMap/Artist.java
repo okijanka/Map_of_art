@@ -1,7 +1,5 @@
 package classesMap;
 
-import java.util.ArrayList;
-
 public class Artist{
 
     private String name;
@@ -12,12 +10,10 @@ public class Artist{
     private Museum museum1;
     private Museum museum2;
 
-    public Artist(String name, String nationality, String paintings/*, Museum museum1, Museum museum2*/) {
+    public Artist(String name, String nationality, String paintings) {
         this.name = name;
         this.nationality = nationality;
         this.paintings = paintings;
-        //this.museum1 = museum1;
-        //this.museum2 = museum2;
     }
 
     public void setMovement(String movement) {

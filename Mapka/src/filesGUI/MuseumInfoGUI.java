@@ -73,6 +73,7 @@ public class MuseumInfoGUI extends JFrame {
                 }
             }
         });
+
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 button.setEnabled(true);

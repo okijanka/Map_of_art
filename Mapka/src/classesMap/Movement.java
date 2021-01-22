@@ -1,7 +1,5 @@
 package classesMap;
 
-import classesMap.Artist;
-
 public class Movement {
 
     private String name;

@@ -23,6 +23,7 @@ public class StartGUI {
                 f.setVisible(true);
             }
         });
+
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

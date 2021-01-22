@@ -19,7 +19,6 @@ public class MapGUI extends JFrame {
     private JRadioButton XVIIICenturyRadioButton;
     private JRadioButton XIXCenturyRadioButton;
     private JComboBox comboMovement;
-    private JTextField art1Text;
     private JTextField art2Text;
     private JButton whereToSeeButton1;
     private JButton whereToSeeButton2;
@@ -34,6 +33,8 @@ public class MapGUI extends JFrame {
     private JPanel obrazek;
     private JPanel right;
     private JLabel mapka;
+    private JLabel art1TXT;
+    private JLabel art2TXT;
     private JButton searchCurrentButton;
     private Movement movement;
     private Museum museum1;
@@ -153,28 +154,33 @@ public class MapGUI extends JFrame {
                 }
             }
         });
+
         showPaintingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pin1.setVisible(true);
-                String nameFile = artist1.getPaintings();
-                String[] paintings = nameFile.split(",");
-                String obraz1 = "paintings/" + paintings[0] + ".png";
-                String obraz2 = "paintings/" + paintings[1] + ".png";
-                watchingPictures(obraz1, paintings[0], showPaintingsButton);
-                watchingPictures(obraz2, paintings[1], showPaintingsButton);
+                if(artist1 != null) {
+                    String nameFile = artist1.getPaintings();
+                    String[] paintings = nameFile.split(",");
+                    String obraz1 = "paintings/" + paintings[0] + ".png";
+                    String obraz2 = "paintings/" + paintings[1] + ".png";
+                    watchingPictures(obraz1, paintings[0], showPaintingsButton);
+                    watchingPictures(obraz2, paintings[1], showPaintingsButton);
+                }
             }
         });
         showPaintingsButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pin2.setVisible(true);
-                String nameFile = artist2.getPaintings();
-                String[] paintings = nameFile.split(",");
-                String obraz1 = "paintings/" + paintings[0] + ".png";
-                String obraz2 = "paintings/" + paintings[1] + ".png";
-                watchingPictures(obraz1, paintings[0], showPaintingsButton1);
-                watchingPictures(obraz2, paintings[1], showPaintingsButton1);
+                if(artist2 != null) {
+                    String nameFile = artist2.getPaintings();
+                    String[] paintings = nameFile.split(",");
+                    String obraz1 = "paintings/" + paintings[0] + ".png";
+                    String obraz2 = "paintings/" + paintings[1] + ".png";
+                    watchingPictures(obraz1, paintings[0], showPaintingsButton1);
+                    watchingPictures(obraz2, paintings[1], showPaintingsButton1);
+                }
             }
         });
 
@@ -326,11 +332,11 @@ public class MapGUI extends JFrame {
 
     private void refresh() {
         if (movement != null) {
-            art1Text.setText(artist1.getName());
-            art2Text.setText(artist2.getName());
+            art1TXT.setText(artist1.getName());
+            art2TXT.setText(artist2.getName());
         } else {
-            art1Text.setText(" ");
-            art2Text.setText(" ");
+            art1TXT.setText(" ");
+            art2TXT.setText(" ");
         }
         mapka.remove(pin1);
         mapka.remove(pin2);

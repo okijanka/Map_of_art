@@ -17,6 +17,7 @@ public class AdminGUI extends JFrame {
     public AdminGUI(JButton adminButton) {
         adminButton.setEnabled(false);
         setContentPane(adminWindow);
+
         showDatabaseOfArtistsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,6 +26,7 @@ public class AdminGUI extends JFrame {
                 f.setVisible(true);
             }
         });
+
         showDatabaseOfMuseumButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,11 +35,13 @@ public class AdminGUI extends JFrame {
                 f.setVisible(true);
             }
         });
+
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 adminButton.setEnabled(true);
             }
         });
+
         showSoldTicketsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
