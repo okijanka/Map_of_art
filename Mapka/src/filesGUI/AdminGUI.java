@@ -20,12 +20,6 @@ public class AdminGUI extends JFrame {
         showDatabaseOfArtistsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Desktop desktop = Desktop.getDesktop();
-//                try {
-//                    desktop.open(new File("malarstwo_14_csv.csv"));
-//                } catch (IOException ioException) {
-//                    ioException.printStackTrace();
-//                }
                 JFrame f = new DatabaseOfArt(showDatabaseOfArtistsButton);
                 f.pack();
                 f.setVisible(true);
